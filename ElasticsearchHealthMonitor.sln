@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticsearchHealthMonitor", "ElasticsearchHealthMonitor\ElasticsearchHealthMonitor.csproj", "{93DA417F-D1E5-4499-A797-8E2014FB8E26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticCheckerConsole", "ElasticCheckerConsole\ElasticCheckerConsole.csproj", "{A9D72AC1-A410-4B0A-9B16-C1B4A201D580}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{93DA417F-D1E5-4499-A797-8E2014FB8E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93DA417F-D1E5-4499-A797-8E2014FB8E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93DA417F-D1E5-4499-A797-8E2014FB8E26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D72AC1-A410-4B0A-9B16-C1B4A201D580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D72AC1-A410-4B0A-9B16-C1B4A201D580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D72AC1-A410-4B0A-9B16-C1B4A201D580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D72AC1-A410-4B0A-9B16-C1B4A201D580}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

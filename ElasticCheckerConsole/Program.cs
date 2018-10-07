@@ -18,13 +18,14 @@ namespace ElasticCheckerConsole
 
             var checker = new HealthChecker(connectionInfo);
 
-            var status = Task.Run(async () => 
-                await checker.CheckStatusAsync()
-            ).GetAwaiter().GetResult();
-
-            // Check the status every 5 seconds.
+            // Check the status constantly.
             while (true)
             {
+                // Do the check.
+                var status = Task.Run(async () => 
+                    await checker.CheckStatusAsync()
+                ).GetAwaiter().GetResult();
+
                 if (status.CheckSuccessful)
                 {
                     //Console.WriteLine(status.RawClusterHealth);
@@ -35,6 +36,7 @@ namespace ElasticCheckerConsole
                     Console.WriteLine(status.CheckException.Message);
                 }
 
+                // Sleep 5 seconds between checks.
                 Thread.Sleep(5000);
             }
         }

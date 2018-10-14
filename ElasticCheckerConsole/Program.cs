@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ElasticsearchHealthMonitor;
+using ElasticsearchHealthMonitor.Services;
 
 namespace ElasticCheckerConsole
 {
@@ -22,19 +23,37 @@ namespace ElasticCheckerConsole
             while (true)
             {
                 // Do the check.
-                var status = Task.Run(async () => 
-                    await checker.CheckStatusAsync()
+                var status = Task.Run(async () =>
+                    await checker.CheckClusterHealthAsync()
                 ).GetAwaiter().GetResult();
 
                 if (status.CheckSuccessful)
                 {
                     //Console.WriteLine(status.RawClusterHealth);
-                    Console.WriteLine($"{DateTime.Now}\t{status.ClusterName}\t{status.ClusterStatus}");
+                    Console.WriteLine($"{DateTime.Now}\t{status.ClusterInformation.ClusterName}\t{status.ClusterInformation.ClusterStatus}");
                 }
                 else
                 {
                     Console.WriteLine(status.CheckException.Message);
                 }
+
+                var indicesStatus = Task
+                    .Run(async () => await checker.CheckIndicesAsync())
+                    .GetAwaiter().GetResult();
+
+                if (indicesStatus.CheckSuccessful)
+                {
+                    foreach(var index in indicesStatus.Indices)
+                    {
+                        Console.WriteLine($"{index.IndexName} - {index.Health} - {index.Status.ToString()} - {index.PrimaryShards} - {index.StoreSize}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(status.CheckException.Message);
+                }
+
+                Console.WriteLine();
 
                 // Sleep 5 seconds between checks.
                 Thread.Sleep(5000);

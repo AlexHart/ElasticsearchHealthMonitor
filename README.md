@@ -9,16 +9,6 @@ It does return this data:
 ```csharp
 
 /// <summary>
-/// Was the Http call successful.
-/// </summary>
-public bool CheckSuccessful { get; }
-
-/// <summary>
-/// Status code of the http call.
-/// </summary>
-public HttpStatusCode StatusCode { get; }
-
-/// <summary>
 /// Name of the cluster.
 /// </summary>
 public string ClusterName { get; }
@@ -34,8 +24,42 @@ public string ClusterStatus { get; }
 public string RawClusterHealth { get; }
 
 /// <summary>
-/// In case there is an exception, if not it will be null.
+/// Number of nodes.
 /// </summary>
-public Exception CheckException { get; }
+public int NodesTotal { get; }
+
+/// <summary>
+/// Number of data nodes.
+/// </summary>
+public int NodesDataTotal { get; }
+
+/// <summary>
+/// Number of total shards in the cluster.
+/// </summary>
+public int Shards { get; }
+
+/// <summary>
+/// Percentage of active percents.
+/// </summary>
+public double ActiveShardsPercent { get; }
+
+```
+
+And also information about the http call status.
+
+When checking indices you get:
+
+```csharp
+
+public string Health { get; }
+public IndexStatus Status { get; }
+public string IndexName { get; }
+public string Uuid { get; }
+public int PrimaryShards { get; }
+public int ReplicatedShards { get; }
+public int DocumentsCount { get; }
+public int DocumentsDeleted { get; }
+public string StoreSize { get; }
+public string StoreSizePrimary { get; }
 
 ```
